@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   html,body, #root {
     height: 100%;
     color: #282828;
+    background: #FAFAFA;
   }
 
   body {

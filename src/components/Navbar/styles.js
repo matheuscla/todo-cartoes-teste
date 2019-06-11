@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: space-between;
   height: 100px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
 
   span {
     font-size: 20px;

@@ -6,6 +6,7 @@ import defaultAvatar from '../../assets/images/default-avatar.png'
 export const Container = styled.div`
   border: 1px solid #DBDBDB;
   border-radius: 4px;
+  background: #fff;
 `
 
 export const Info = styled.div`
