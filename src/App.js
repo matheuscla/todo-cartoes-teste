@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import InfiniteScroll from 'react-infinite-scroller'
 
 import api from './services/api'
 
@@ -12,6 +13,8 @@ import Filter from './components/Filter'
 
 class App extends Component {
   state = {
+    pagination: 12,
+    hasMore: true,
     products: [],
     filtered: [],
     min: 0,
@@ -79,39 +82,57 @@ class App extends Component {
     })
   }
 
+  loadMore = () => {
+    const { filtered, pagination } = this.state
+
+    if (pagination <= filtered.length) {
+      return this.setState({ pagination: this.state.pagination + 12 })
+    }
+  }
+
   render() {
-    const { filtered, max, min } = this.state
+    const { filtered, max, min, pagination, hasMore } = this.state
     return (
-      <div onScroll={this.handleScroll}>
+      <div>
         <Navbar />
         <Steps />
-        <MainContainer>
-          <ListInfo
-            title='O Bebê Nerd'
-            totalProducts={57}
-            totalPrice={6000}
-            />
-          <Wrapper>
-            <Filter
-              byName={this.filterByName}
-              priceChange={this.handlePriceChange}
-              onChangeSlider={(values) => this.setState({ min: values[0], max: values[1]})}
-              minPrice={filtered.length > 1 ? this.getMinPrice() : 0 }
-              maxPrice={filtered.length > 1 ? this.getMaxPrice() : 0 }
-            />
-            <CardsContainer>
-              {filtered.map((product) => (
-                <ProductCard
-                  removeProduct={this.removeProductHandler}
-                  title={product.name}
-                  img={product.image}
-                  price={product.price}
-                  id={product.id}
-                  key={product.id}  />
-              ))}
-            </CardsContainer>
-          </Wrapper>
-        </MainContainer>
+          <InfiniteScroll
+              pageStart={0}
+              loadMore={this.loadMore}
+              hasMore={true || false}
+              loader={hasMore && <div key={0}>Loading ...</div>}>
+          <MainContainer>
+            <ListInfo
+              title='O Bebê Nerd'
+              totalProducts={57}
+              totalPrice={6000}
+              />
+            <Wrapper>
+              <Filter
+                byName={this.filterByName}
+                priceChange={this.handlePriceChange}
+                onChangeSlider={(values) => this.setState({ min: values[0], max: values[1]})}
+                minPrice={filtered.length > 1 ? this.getMinPrice() : 0 }
+                maxPrice={filtered.length > 1 ? this.getMaxPrice() : 0 }
+              />
+              <CardsContainer>
+                {filtered.map((product, index) => {
+                  if (index <= pagination) {
+                    return (
+                      <ProductCard
+                        removeProduct={this.removeProductHandler}
+                        title={product.name}
+                        img={product.image}
+                        price={product.price}
+                        id={product.id}
+                        key={product.id}  />
+                    )
+                  }
+                })}
+              </CardsContainer>
+            </Wrapper>
+          </MainContainer>
+        </InfiniteScroll>
       </div>
     )
   }
