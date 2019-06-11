@@ -13,7 +13,9 @@ import Filter from './components/Filter'
 class App extends Component {
   state = {
     products: [],
-    filtered: []
+    filtered: [],
+    min: 0,
+    max: 0
   }
 
   componentDidMount() {
@@ -46,11 +48,41 @@ class App extends Component {
     }, 300)
   }
 
-  render() {
+  getMinPrice = () => {
+    const { products } = this.state
+    const prices = products.map(product => product.price)
+
+    return prices.reduce((a, b) => Math.min(a, b))
+  }
+
+  getMaxPrice = () => {
+    const { products } = this.state
+    const prices = products.map(product => product.price)
+
+    return prices.reduce((a, b) => Math.max(a, b))
+  }
+
+  handlePriceChange = (values) => {
     const { filtered } = this.state
-    console.log(filtered)
+
+    this.setState({
+      min: values[0],
+      max: values[1]
+    }, () => {
+      const filteredPrice = filtered.map(product => {
+        if (product.price >= values[0] && product.price <= values[1]) {
+          return product
+        }
+      })
+
+      this.setState({ filtered: filteredPrice.filter(Boolean) })
+    })
+  }
+
+  render() {
+    const { filtered, max, min } = this.state
     return (
-      <div>
+      <div onScroll={this.handleScroll}>
         <Navbar />
         <Steps />
         <MainContainer>
@@ -62,9 +94,13 @@ class App extends Component {
           <Wrapper>
             <Filter
               byName={this.filterByName}
+              priceChange={this.handlePriceChange}
+              onChangeSlider={(values) => this.setState({ min: values[0], max: values[1]})}
+              minPrice={filtered.length > 1 ? this.getMinPrice() : 0 }
+              maxPrice={filtered.length > 1 ? this.getMaxPrice() : 0 }
             />
             <CardsContainer>
-              {filtered.map(product => (
+              {filtered.map((product) => (
                 <ProductCard
                   removeProduct={this.removeProductHandler}
                   title={product.name}

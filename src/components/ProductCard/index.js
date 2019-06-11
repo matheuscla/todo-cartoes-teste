@@ -14,7 +14,7 @@ const ProductCard = ({ title, price, img, removeProduct, id }) => (
           <img src={deleteIcon} alt='Deletar' />
         </button>
       </div>
-      <strong>R${price},00</strong>
+      <strong>R${price}</strong>
     </Info>
   </Container>
 )
