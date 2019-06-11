@@ -7,6 +7,7 @@ export const Container = styled.div`
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   background: #fff;
+  margin-bottom: 44px;
 `
 
 export const Info = styled.div`

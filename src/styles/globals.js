@@ -35,6 +35,17 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: 0;
   }
+
+  .rc-slider-handle {
+    border-color: #54A8FD !important;
+    margin-top: -10px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .rc-slider-track {
+    background-color: #54A8FD !important;
+  }
 `
 
 export default GlobalStyle

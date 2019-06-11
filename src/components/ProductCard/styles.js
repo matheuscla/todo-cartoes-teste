@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   background: #fff;
   border-radius: 4px;
-  width: 32%;
+  width: 320px;
   margin-bottom: 48px;
   box-shadow: 2px 2px 6px rgba(40, 40, 40, 0.2);
 
@@ -11,6 +11,7 @@ export const Container = styled.div`
     width: 100%;
     height: 280px;
     object-fit: cover;
+    border-radius: 4px 4px 0 0;
   }
 `
 

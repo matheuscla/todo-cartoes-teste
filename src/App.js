@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 
 import api from './services/api'
 
-import { CardsContainer, MainContainer } from './styles/components'
+import { CardsContainer, MainContainer, Wrapper } from './styles/components'
 
 import Navbar from './components/Navbar'
 import Steps from './components/Steps'
 import ListInfo from './components/ListInfo'
 import ProductCard from './components/ProductCard'
+import Filter from './components/Filter'
 
 class App extends Component {
   state = {
@@ -44,15 +45,18 @@ class App extends Component {
             totalProducts={57}
             totalPrice={6000}
             />
-          <CardsContainer>
-            {products.map(product => (
-              <ProductCard
-                title={product.name}
-                img={product.image}
-                price={product.price}
-                key={product.id}  />
-            ))}
-          </CardsContainer>
+          <Wrapper>
+            <Filter />
+            <CardsContainer>
+              {products.map(product => (
+                <ProductCard
+                  title={product.name}
+                  img={product.image}
+                  price={product.price}
+                  key={product.id}  />
+              ))}
+            </CardsContainer>
+          </Wrapper>
         </MainContainer>
       </div>
     )
