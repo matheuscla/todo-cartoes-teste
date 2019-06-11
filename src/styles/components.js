@@ -9,6 +9,10 @@ export const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   width: 74%;
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const Wrapper = styled.div`

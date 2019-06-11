@@ -13,6 +13,10 @@ export const Container = styled.div`
     object-fit: cover;
     border-radius: 4px 4px 0 0;
   }
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const Info = styled.div`

@@ -19,6 +19,25 @@ export const Container = styled.div`
       margin-right: 12px;
     }
   }
+
+  @media(max-width: 768px) {
+    height: 50px;
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+
+    span {
+      font-size: 12px;
+      line-height: 16px;
+
+      img {
+        width: auto;
+        height: 10px;
+      }
+    }
+  }
 `
 
 export const LoginButton = styled.button`
@@ -32,4 +51,13 @@ export const LoginButton = styled.button`
   width: 144px;
   height: 40px;
   font-weight: bold;
+
+  @media(max-width: 768px) {
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    padding: 0;
+    background: transparent;
+    color: #54A8FD;
+  }
 `

@@ -15,9 +15,10 @@ const Filter = ({ byName, onChangeSlider, priceChange, minPrice, maxPrice, min, 
     </PriceRange>
     <RangeContainer>
       <Range
+        included
         onChange={onChangeSlider}
         onAfterChange={priceChange}
-        value={[minPrice, maxPrice]}
+        value={[min, max]}
         min={minPrice}
         max={maxPrice}/>
     </RangeContainer>

@@ -8,6 +8,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    height: 100%;
+    padding: 15px 30px;
+    align-items: flex-start;
+  }
 `
 
 export const Step = styled.div`
@@ -35,6 +42,10 @@ export const Step = styled.div`
 
   div strong, small {
     color: ${props => props.disabled? '#A1A1A1' : ''}
+  }
+
+  @media(max-width: 768px) {
+    margin-bottom: 16px;
   }
 `
 

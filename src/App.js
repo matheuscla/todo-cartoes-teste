@@ -17,8 +17,8 @@ class App extends Component {
     hasMore: true,
     products: [],
     filtered: [],
-    min: 0,
-    max: 0
+    min: 10,
+    max: 79.93
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class App extends Component {
       const filteredProducts = prevState.products
         .filter(product => product.id !== id)
 
-      return { products: filteredProducts }
+      return { filtered: filteredProducts }
     })
   }
 
@@ -66,20 +66,19 @@ class App extends Component {
   }
 
   handlePriceChange = (values) => {
-    const { filtered } = this.state
+    const { filtered, products } = this.state
 
-    this.setState({
-      min: values[0],
-      max: values[1]
-    }, () => {
-      const filteredPrice = filtered.map(product => {
-        if (product.price >= values[0] && product.price <= values[1]) {
-          return product
-        }
-      })
-
-      this.setState({ filtered: filteredPrice.filter(Boolean) })
+    const filteredPrice = products.map(product => {
+      if (product.price >= values[0] && product.price <= values[1]) {
+        return product
+      }
     })
+
+    if (values[1] < values[0]) {
+      return this.setState({ filtered })
+    }
+
+    this.setState({ filtered: filteredPrice.filter(Boolean) })
   }
 
   loadMore = () => {
@@ -91,7 +90,7 @@ class App extends Component {
   }
 
   render() {
-    const { filtered, max, min, pagination, hasMore } = this.state
+    const { products, filtered, max, min, pagination, hasMore } = this.state
     return (
       <div>
         <Navbar />
@@ -112,8 +111,10 @@ class App extends Component {
                 byName={this.filterByName}
                 priceChange={this.handlePriceChange}
                 onChangeSlider={(values) => this.setState({ min: values[0], max: values[1]})}
-                minPrice={filtered.length > 1 ? this.getMinPrice() : 0 }
-                maxPrice={filtered.length > 1 ? this.getMaxPrice() : 0 }
+                minPrice={products.length > 1 ? this.getMinPrice() : 0 }
+                maxPrice={products.length > 1 ? this.getMaxPrice() : 0 }
+                min={min}
+                max={max}
               />
               <CardsContainer>
                 {filtered.map((product, index) => {
