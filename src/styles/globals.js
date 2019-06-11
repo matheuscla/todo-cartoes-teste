@@ -21,26 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
   html,body, #root {
     height: 100%;
-  }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #434655;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #434655;
-    -webkit-box-shadow: inset 0 0 6px #434655;
-  }
-  ::-webkit-scrollbar-thumb:window-inactive {
-  	background: rgba(255,0,0,0.4);
+    color: #282828;
   }
 
   body {
