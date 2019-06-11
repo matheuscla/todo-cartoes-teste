@@ -12,29 +12,43 @@ import Filter from './components/Filter'
 
 class App extends Component {
   state = {
-    products: []
+    products: [],
+    filtered: []
   }
 
   componentDidMount() {
     api.get('/products')
-      .then(products => this.setState({ products: products.data }))
+      .then(products => this.setState({ products: products.data, filtered: products.data }))
   }
 
-  renderProducts = () => {
-    const { products } = this.state
+  removeProductHandler = id => {
+    this.setState(prevState => {
+      const filteredProducts = prevState.products
+        .filter(product => product.id !== id)
 
-    return products.map(product => (
-      <ProductCard
-        title={product.name}
-        img={product.image}
-        price={product.price}
-        key={product.id}  />
-    ))
+      return { products: filteredProducts }
+    })
+  }
+
+  filterByName = term => {
+    const { filtered } = this.state
+    if (term === '') {
+      return this.setState({ filtered: this.state.products })
+    }
+
+    setTimeout(() => {
+      const filteredProducts = filtered.filter((product) => {
+        return product.name.toLowerCase().indexOf(
+          term.toLowerCase()) !== -1
+        })
+
+        this.setState({ filtered: filteredProducts })
+    }, 300)
   }
 
   render() {
-    const { products } = this.state
-
+    const { filtered } = this.state
+    console.log(filtered)
     return (
       <div>
         <Navbar />
@@ -46,13 +60,17 @@ class App extends Component {
             totalPrice={6000}
             />
           <Wrapper>
-            <Filter />
+            <Filter
+              byName={this.filterByName}
+            />
             <CardsContainer>
-              {products.map(product => (
+              {filtered.map(product => (
                 <ProductCard
+                  removeProduct={this.removeProductHandler}
                   title={product.name}
                   img={product.image}
                   price={product.price}
+                  id={product.id}
                   key={product.id}  />
               ))}
             </CardsContainer>

@@ -4,9 +4,9 @@ import { Range } from 'rc-slider'
 
 import { Container, PriceRange, RangeContainer, SearchInput } from './styles'
 
-const Filter = () => (
+const Filter = ({ byName }) => (
   <Container>
-    <SearchInput placeholder='Pesquisar' />
+    <SearchInput placeholder='Pesquisar' onChange={(e) => byName(e.target.value)} />
     <h3>Preço</h3>
     <hr />
     <PriceRange>
