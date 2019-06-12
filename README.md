@@ -23,3 +23,11 @@ Basta executar o comando `yarn test`
 * PropTypes: prop-types foi utilizado para tipar as propriedades recebidas pelos components.
 
 * styled-components: Uma ótima alternativa para manter os styles da aplicação organizados.
+
+### Layout Desktop
+
+![desktop](https://user-images.githubusercontent.com/12254845/59318674-2ed5dd80-8c9e-11e9-87bc-4305e8d34133.png)
+
+### Layout Mobile
+
+![mobile](https://user-images.githubusercontent.com/12254845/59318696-4319da80-8c9e-11e9-9aa3-ca4112df4aa0.png)
