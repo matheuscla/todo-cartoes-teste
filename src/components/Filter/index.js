@@ -1,12 +1,16 @@
 import React from 'react'
 import 'rc-slider/assets/index.css'
 import { Range } from 'rc-slider'
+import PropTypes from 'prop-types'
 
 import { Container, PriceRange, RangeContainer, SearchInput } from './styles'
 
 const Filter = ({ byName, onChangeSlider, priceChange, minPrice, maxPrice, min, max }) => (
   <Container>
-    <SearchInput placeholder='Pesquisar' onChange={(e) => byName(e.target.value)} />
+    <SearchInput
+      id='search-bar'
+      placeholder='Pesquisar'
+      onChange={(e) => byName(e.target.value)} />
     <h3>Preço</h3>
     <hr />
     <PriceRange>
@@ -24,5 +28,15 @@ const Filter = ({ byName, onChangeSlider, priceChange, minPrice, maxPrice, min, 
     </RangeContainer>
   </Container>
 )
+
+Filter.propTypes = {
+  byName: PropTypes.func,
+  onChangeSlider: PropTypes.func,
+  priceChange: PropTypes.func,
+  minPrice: PropTypes.number,
+  maxPrice: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
+}
 
 export default Filter

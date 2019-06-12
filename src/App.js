@@ -22,6 +22,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.fetchProducts()
+  }
+
+  fetchProducts = () => {
     api.get('/products')
       .then(products => this.setState({ products: products.data, filtered: products.data }))
   }

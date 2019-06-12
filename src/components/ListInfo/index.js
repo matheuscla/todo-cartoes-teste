@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import defaultAvatar from '../../assets/images/default-avatar.png'
 
@@ -19,5 +20,11 @@ const ListInfo = ({ title, totalProducts, totalPrice }) => (
     </Info>
   </Container>
 )
+
+ListInfo.propTypes = {
+  title: PropTypes.string,
+  totalProducts: PropTypes.number,
+  totalPrice: PropTypes.number
+}
 
 export default ListInfo

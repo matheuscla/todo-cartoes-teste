@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import deleteIcon from '../../assets/images/delete.svg'
 
@@ -18,5 +19,13 @@ const ProductCard = ({ title, price, img, removeProduct, id }) => (
     </Info>
   </Container>
 )
+
+ProductCard.propTypes = {
+  title: PropTypes.string,
+  price: PropTypes.number,
+  img: PropTypes.string,
+  removeProduct: PropTypes.func,
+  id: PropTypes.number
+}
 
 export default ProductCard

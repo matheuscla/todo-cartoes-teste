@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import backIcon from '../../assets/images/back.svg'
 import defaultLogo from '../../assets/images/default-logo.svg'
 
@@ -15,5 +15,9 @@ const Navbar = ({ logo = defaultLogo }) => (
     <LoginButton>Login</LoginButton>
   </Container>
 )
+
+Navbar.propTypes = {
+  logo: PropTypes.string
+}
 
 export default Navbar
