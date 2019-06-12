@@ -1,68 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## Teste Todo Cartões
 
 In the project directory, you can run:
 
-### `npm start`
+### Instruções
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para executar o projeto instale as dependencias com npm `yarn install`. Após a instalação rode `yarn start`, em outra aba do terminal rode o comando `yarn run server` para subir o server com os dados mockados. A aplicaçao sera executada em http://localhost:3000
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
+### Como rodar os testes
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Basta executar o comando `yarn test`
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tecnologias e libs usadas
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+* React: React foi escolhido para manter a aplicação componentizada, diminuir a responsabilidade dos arquivos e ganhar performance com operações ao acessar o DOM. Como consequencia o código da aplicação fica menor e mais fácil para ser testado. Utilização do Redux nesse caso não foi necessaria, uma vez que a aplicação não precisa de compartilhamento de estado com componentes que não possuem uma ligação direta.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* json-server: É uma lib bem simples para mockar dados.
 
-### `npm run eject`
+* Axios: Axios foi usado para fazer chamadas http com o server.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Jest e enzyme: Duas libs para fazer testes de integração e unitários
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* PropTypes: prop-types foi utilizado para tipar as propriedades recebidas pelos components.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* styled-components: Uma ótima alternativa para manter os styles da aplicação organizados.
