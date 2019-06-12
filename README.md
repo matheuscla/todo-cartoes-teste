@@ -1,7 +1,5 @@
 ## Teste Todo Cartões
 
-In the project directory, you can run:
-
 ### Instruções
 
 Para executar o projeto instale as dependencias com npm `yarn install`. Após a instalação rode `yarn start`, em outra aba do terminal rode o comando `yarn run server` para subir o server com os dados mockados. A aplicaçao sera executada em http://localhost:3000
