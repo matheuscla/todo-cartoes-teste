@@ -1,17 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'TodoCartoes';
-    src: url('../assets/fonts/TodoCartoesFont.ttf');
-  }
-
-  @font-face {
-    font-family: 'TodoCartoes';
-    src: url('../assets/fonts/TodoCartoesFontBold.ttf');
-    font-weight: bold;
-  }
-
   * {
     margin: 0;
     padding: 0;
@@ -28,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    font-family: 'TodoCartoes', sans-serif;
+    font-family: 'Quicksand', sans-serif;
   }
 
   button {

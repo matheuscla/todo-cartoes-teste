@@ -51,4 +51,8 @@ export const PriceRange = styled.div`
 export const RangeContainer = styled.div`
   width: 258px;
   margin-left: 3px;
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
 `

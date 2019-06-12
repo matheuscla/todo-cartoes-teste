@@ -13,6 +13,7 @@ import Filter from './components/Filter'
 
 class App extends Component {
   state = {
+    term: '',
     pagination: 12,
     hasMore: true,
     products: [],
@@ -41,18 +42,21 @@ class App extends Component {
 
   filterByName = term => {
     const { filtered } = this.state
-    if (term === '') {
-      return this.setState({ filtered: this.state.products })
-    }
 
-    setTimeout(() => {
-      const filteredProducts = filtered.filter((product) => {
-        return product.name.toLowerCase().indexOf(
-          term.toLowerCase()) !== -1
-        })
+    this.setState({ term }, () => {
+      if (term === '') {
+        return this.setState({ filtered: this.state.products })
+      }
 
-        this.setState({ filtered: filteredProducts })
-    }, 300)
+      setTimeout(() => {
+        const filteredProducts = filtered.filter((product) => {
+          return product.name.toLowerCase().indexOf(
+            term.toLowerCase()) !== -1
+          })
+
+          this.setState({ filtered: filteredProducts })
+        }, 300)
+    })
   }
 
   getMinPrice = () => {
@@ -70,13 +74,22 @@ class App extends Component {
   }
 
   handlePriceChange = (values) => {
-    const { filtered, products } = this.state
+    const { filtered, products, term } = this.state
+    let filteredPrice
 
-    const filteredPrice = products.map(product => {
-      if (product.price >= values[0] && product.price <= values[1]) {
-        return product
-      }
-    })
+    if (term !== '') {
+      filteredPrice = filtered.map(product => {
+        if (product.price >= values[0] && product.price <= values[1]) {
+          return product
+        }
+      })
+    } else {
+      filteredPrice = products.map(product => {
+        if (product.price >= values[0] && product.price <= values[1]) {
+          return product
+        }
+      })
+    }
 
     if (values[1] < values[0]) {
       return this.setState({ filtered })
@@ -94,7 +107,16 @@ class App extends Component {
   }
 
   render() {
-    const { products, filtered, max, min, pagination, hasMore } = this.state
+    const {
+      products,
+      filtered,
+      max,
+      min,
+      pagination,
+      hasMore,
+      term
+    } = this.state
+    
     return (
       <div>
         <Navbar />
@@ -119,6 +141,7 @@ class App extends Component {
                 maxPrice={products.length > 1 ? this.getMaxPrice() : 0 }
                 min={min}
                 max={max}
+                term={term}
               />
               <CardsContainer>
                 {filtered.map((product, index) => {
