@@ -27,8 +27,10 @@ class App extends Component {
   }
 
   fetchProducts = () => {
-    api.get('/products')
-      .then(products => this.setState({ products: products.data, filtered: products.data }))
+    api.get('/products').then(products => {
+      const orderedProducts = products.data.sort(this.sortByPrice)
+      this.setState({ products: orderedProducts, filtered: orderedProducts })
+    })
   }
 
   removeProductHandler = id => {
@@ -38,6 +40,18 @@ class App extends Component {
 
       return { filtered: filteredProducts }
     })
+  }
+
+  sortByPrice = (a, b) => {
+    if (a.price < b.price) {
+      return -1;
+    }
+
+    if (a.price > b.price) {
+      return 1;
+    }
+
+    return 0;
   }
 
   filterByName = term => {
@@ -116,7 +130,7 @@ class App extends Component {
       hasMore,
       term
     } = this.state
-    
+
     return (
       <div>
         <Navbar />
